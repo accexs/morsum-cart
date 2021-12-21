@@ -3,7 +3,6 @@ const Storage = (state) => {
 }
 
 export const CartReducer = (state, action) => {
-    console.log('ACTION', action);
     switch (action.type) {
         case "ADD_ITEM":
         case "DECREASE":

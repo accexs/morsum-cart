@@ -11,7 +11,6 @@ const CartContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(CartReducer, initialState);
 
     const decrease = async payload => {
-        console.log(payload);
         const response = await axios.patch('http://morsum.test/api/cart/removeItem', {
             rowId: payload.rowId
         });
@@ -21,7 +20,6 @@ const CartContextProvider = ({children}) => {
     }
 
     const addProduct = async payload => {
-        console.log(payload);
         const response = await axios.patch('http://morsum.test/api/cart/addItem', {
             id: payload.id
         });
@@ -38,7 +36,6 @@ const CartContextProvider = ({children}) => {
     }
 
     const handleCheckout = async () => {
-        console.log('CHECKOUT', state);
         const response = await axios.post('http://morsum.test/api/orders');
         if (response.status === 201) {
             dispatch({type: 'CHECKOUT'});

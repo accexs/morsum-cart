@@ -16709,6 +16709,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function ProductList(_ref) {
+  var _productState$meta$cu;
+
   var products = _ref.products,
       _ref$cartMode = _ref.cartMode,
       cartMode = _ref$cartMode === void 0 ? false : _ref$cartMode;
@@ -16743,6 +16745,8 @@ function ProductList(_ref) {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
         count: productState.meta.last_page,
+        defaultPage: 1,
+        page: (_productState$meta$cu = productState.meta.current_page) !== null && _productState$meta$cu !== void 0 ? _productState$meta$cu : 1,
         onChange: handlePagination
       })]
     })
@@ -16878,13 +16882,12 @@ var CartContextProvider = function CartContextProvider(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(payload);
-              _context.next = 3;
+              _context.next = 2;
               return axios.patch('http://morsum.test/api/cart/removeItem', {
                 rowId: payload.rowId
               });
 
-            case 3:
+            case 2:
               response = _context.sent;
 
               if (response.status === 200) {
@@ -16894,7 +16897,7 @@ var CartContextProvider = function CartContextProvider(_ref) {
                 });
               }
 
-            case 5:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -16914,13 +16917,12 @@ var CartContextProvider = function CartContextProvider(_ref) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              console.log(payload);
-              _context2.next = 3;
+              _context2.next = 2;
               return axios.patch('http://morsum.test/api/cart/addItem', {
                 id: payload.id
               });
 
-            case 3:
+            case 2:
               response = _context2.sent;
 
               if (response.status === 200) {
@@ -16930,7 +16932,7 @@ var CartContextProvider = function CartContextProvider(_ref) {
                 });
               }
 
-            case 5:
+            case 4:
             case "end":
               return _context2.stop();
           }
@@ -16982,11 +16984,10 @@ var CartContextProvider = function CartContextProvider(_ref) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              console.log('CHECKOUT', state);
-              _context4.next = 3;
+              _context4.next = 2;
               return axios.post('http://morsum.test/api/orders');
 
-            case 3:
+            case 2:
               response = _context4.sent;
 
               if (response.status === 201) {
@@ -16995,7 +16996,7 @@ var CartContextProvider = function CartContextProvider(_ref) {
                 });
               }
 
-            case 5:
+            case 4:
             case "end":
               return _context4.stop();
           }
@@ -17047,8 +17048,6 @@ var Storage = function Storage(state) {
 };
 
 var CartReducer = function CartReducer(state, action) {
-  console.log('ACTION', action);
-
   switch (action.type) {
     case "ADD_ITEM":
     case "DECREASE":
@@ -17149,7 +17148,6 @@ var ProductsContextProvider = function ProductsContextProvider(_ref) {
               response = _context.sent;
 
               if (response.status === 200) {
-                console.log('state response', response);
                 setProductsData({
                   products: response.data.data,
                   links: response.data.links,

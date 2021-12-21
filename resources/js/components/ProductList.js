@@ -29,6 +29,8 @@ function ProductList({products, cartMode = false}) {
                         </ImageList>
                         <Pagination
                             count={productState.meta.last_page}
+                            defaultPage={1}
+                            page={productState.meta.current_page ?? 1}
                             onChange={handlePagination}
                         />
                     </Stack>
