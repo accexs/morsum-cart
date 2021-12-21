@@ -20,8 +20,7 @@ class Order extends Model
     protected static function booted()
     {
         static::created(function ($order) {
-            Mail::to('me@mail.com')->queue(new OrderCreated($order));
-            // TODO: destroy the cart
+            Mail::to(config('mail.order_recipient'))->queue(new OrderCreated($order));
         });
     }
 }

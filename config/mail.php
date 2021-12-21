@@ -115,4 +115,6 @@ return [
         ],
     ],
 
+    'order_recipient' => env('MAIL_ORDER_RECIPIENT', 'hello@example.com')
+
 ];

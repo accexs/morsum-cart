@@ -1,66 +1,50 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Morsum shopping cart.
 
-## About Laravel
+Small demo application with laravel + react. To handle the shopping cart [LaravelShoppingCart](https://github.com/hardevine/LaravelShoppingcart) package was used, it handles the cart state by keeping a session and is possible to save/restore the cart from the DB. On Frontend side there is a mix of Context and Hooks to handle the Cart state. Material UI was chosen as component library. Users can browse a series of products, add them to a shopping cart, add more or reduce quantity, and do a checkout.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The easiest way to set up the project is by using laravel valet. After installing composer dependencies is important to set `.env` file variables. Mails are handled on queues, default sync queue driver should be enough however everything was developed/tested using laravel horizon.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+In order to run migrations remember to set DB variables. There is a seed class for products with a list of 100 products but for performance sake only 20 shown on the FE, rapidapi endpints were used to get the json to feed the products table.
 
-## Learning Laravel
+Is recommended to use mailtrap to test the app, `MAIL_ORDER_RECIPIENT` variable is used as target for the generated order.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Tests were created for all the features of the app. To execute them all just run `php artisan test`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Usage
 
-## Laravel Sponsors
+Cart state is orchestated by the BE. Every action updates the cart context and is saved on local storage with data incoming form the `cart` and `orders` endpoints.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+The library used to handle cart state uses a combination of session and db sotarge to keep data, it is not the best approach for an API however using the DB storage feature makes it ok to persue this approach and it was a time saver. It will be better for this APP to refactor this in favor of a more traditional `Cart` model.
 
-### Premium Partners
+Several endpoints compose the service:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+`GET /products`
 
-## Contributing
+Returns a list of products
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`POST /orders`
 
-## Code of Conduct
+This endpoint creates an order based on the cart items and sends it to the config email. Orders are stored and have a many to many relationship with products.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+`GET /cart`
 
-## Security Vulnerabilities
+Returns cart state: items, total, subtotal, etc.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`PATCH /cart/addItem  PAYLOAD: {id: someProductId(required), quantity: someInt(optional)}`
+
+Adds an existing product to the cart or increases the quantity of an already existing item. It supports the posibility to increment/add more than one product at once using the `quantity` param.
+
+`PATCH /cart/removeItem PAYLOAD: {rowId: someCartItemId(required)}`
+
+Removes an item from the cart reducing its quantity 1 by 1. Is possible to implement a remove the product completely from the cart doing a small refactor and using quantity 0.
+
+`DELETE /cart`
+
+Removes all products from the cart.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[MIT license](https://opensource.org/licenses/MIT).
