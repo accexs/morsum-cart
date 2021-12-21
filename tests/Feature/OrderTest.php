@@ -32,7 +32,7 @@ class OrderTest extends TestCase
         $expectedTotal = $product->price * $qty;
 
         // add items to cart
-        Cart::add($product, 2);
+        Cart::add($product, $qty);
         Cart::store('morsum_cart');
 
         $response = $this->postJson('/api/orders');

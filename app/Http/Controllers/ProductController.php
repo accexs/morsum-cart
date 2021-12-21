@@ -11,7 +11,6 @@ class ProductController extends Controller
 {
     public function index(): JsonResource
     {
-        // without pagination is better to limit results to 20
-        return ProductResource::collection(Product::limit(20)->get());
+        return ProductResource::collection(Product::paginate(20));
     }
 }

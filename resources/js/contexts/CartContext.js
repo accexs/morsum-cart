@@ -11,32 +11,38 @@ const CartContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(CartReducer, initialState);
 
     const decrease = async payload => {
-        // TODO: handle response error
+        console.log(payload);
         const response = await axios.patch('http://morsum.test/api/cart/removeItem', {
             rowId: payload.rowId
         });
-        dispatch({type: 'DECREASE', response})
+        if (response.status === 200) {
+            dispatch({type: 'DECREASE', response});
+        }
     }
 
     const addProduct = async payload => {
-        // TODO: handle response error
+        console.log(payload);
         const response = await axios.patch('http://morsum.test/api/cart/addItem', {
             id: payload.id
         });
-        dispatch({type: 'ADD_ITEM', response})
+        if (response.status === 200) {
+            dispatch({type: 'ADD_ITEM', response});
+        }
     }
 
     const clearCart = async () => {
-        // TODO: handle response error
         const response = await axios.delete('http://morsum.test/api/cart');
-        dispatch({type: 'CLEAR'})
+        if (response.status === 200) {
+            dispatch({type: 'CLEAR'});
+        }
     }
 
     const handleCheckout = async () => {
         console.log('CHECKOUT', state);
-        // TODO: handle response error
         const response = await axios.post('http://morsum.test/api/orders');
-        dispatch({type: 'CHECKOUT'})
+        if (response.status === 201) {
+            dispatch({type: 'CHECKOUT'});
+        }
     }
 
     const contextValues = {
@@ -45,7 +51,7 @@ const CartContextProvider = ({children}) => {
         clearCart,
         handleCheckout,
         ...state
-    }
+    };
 
     return (
         <CartContext.Provider value={contextValues}>

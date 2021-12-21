@@ -4,14 +4,35 @@ export const ProductsContext = createContext(undefined)
 
 const ProductsContextProvider = ({children}) => {
 
-    const [products, setProductsData] = useState([]);
+    const [productState, setProductsData] = useState({
+        products: [],
+        links: [],
+        meta: []
+    });
+
+    const fetchProducts = async (pageNumber) => {
+        const response = await axios.get('http://morsum.test/api/products?page=' + pageNumber);
+        if (response.status === 200) {
+            console.log('state response', response);
+            setProductsData({
+                products: response.data.data,
+                links: response.data.links,
+                meta: response.data.meta
+            });
+        }
+    }
+
     useEffect(async () => {
-        // TODO: handle response error
-        const response = await axios.get('http://morsum.test/api/products');
-        setProductsData(response.data);
+        await fetchProducts();
     }, []);
+
+    const contextValues = {
+        fetchProducts,
+        productState
+    }
+
     return (
-        <ProductsContext.Provider value={{products}}>
+        <ProductsContext.Provider value={contextValues}>
             {children}
         </ProductsContext.Provider>
     );

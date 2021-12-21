@@ -7,7 +7,7 @@ Small demo application with laravel + react. To handle the shopping cart [Larave
 
 The easiest way to set up the project is by using laravel valet. After installing composer dependencies is important to set `.env` file variables. Mails are handled on queues, default sync queue driver should be enough however everything was developed/tested using laravel horizon.
 
-In order to run migrations remember to set DB variables. There is a seed class for products with a list of 100 products but for performance sake only 20 shown on the FE, rapidapi endpints were used to get the json to feed the products table.
+In order to run migrations remember to set DB variables. There is a seed class for products with a list of 100 products paginated by stacks on 20, rapidapi endpoints were used to get the json to feed the products table.
 
 Is recommended to use mailtrap to test the app, `MAIL_ORDER_RECIPIENT` variable is used as target for the generated order.
 
@@ -15,9 +15,9 @@ Tests were created for all the features of the app. To execute them all just run
 
 ## Usage
 
-Cart state is orchestated by the BE. Every action updates the cart context and is saved on local storage with data incoming form the `cart` and `orders` endpoints.
+Cart state is orchestrated by the BE. Every action updates the cart context and is saved on local storage with data incoming form the `cart` and `orders` endpoints.
 
-The library used to handle cart state uses a combination of session and db sotarge to keep data, it is not the best approach for an API however using the DB storage feature makes it ok to persue this approach and it was a time saver. It will be better for this APP to refactor this in favor of a more traditional `Cart` model.
+The library used to handle cart state uses a combination of session and db storage to keep data, it is not the best approach for an API however using the DB storage feature makes it ok to pursue this approach, and it was a time saver. It will be better for this APP to refactor this in favor of a more traditional `Cart` model.
 
 To check OpenApi 3 spec, go to `/api/documentation` on the browser. An  `api-docs.json` is provided and should work however if needed execute `php artisan l5-swagger:generate` 
 
@@ -29,7 +29,7 @@ Returns a list of products
 
 `POST /orders`
 
-This endpoint creates an order based on the cart items and sends it to the config email. Orders are stored and have a many to many relationship with products.
+This endpoint creates an order based on the cart items and sends it to the config email. Orders are stored and have a many-to-many relationship with products.
 
 `GET /cart`
 
@@ -37,7 +37,7 @@ Returns cart state: items, total, subtotal, etc.
 
 `PATCH /cart/addItem  PAYLOAD: {id: someProductId(required), quantity: someInt(optional)}`
 
-Adds an existing product to the cart or increases the quantity of an already existing item. It supports the posibility to increment/add more than one product at once using the `quantity` param.
+Adds an existing product to the cart or increases the quantity of an already existing item. It supports the possibility to increment/add more than one product at once using the `quantity` param.
 
 `PATCH /cart/removeItem PAYLOAD: {rowId: someCartItemId(required)}`
 

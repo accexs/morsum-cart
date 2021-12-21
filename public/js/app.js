@@ -6969,6 +6969,754 @@ const linkClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiLi
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/Pagination/Pagination.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@mui/material/Pagination/Pagination.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/integerPropType.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _paginationClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./paginationClasses */ "./node_modules/@mui/material/Pagination/paginationClasses.js");
+/* harmony import */ var _usePagination__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../usePagination */ "./node_modules/@mui/material/usePagination/usePagination.js");
+/* harmony import */ var _PaginationItem__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../PaginationItem */ "./node_modules/@mui/material/PaginationItem/PaginationItem.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["boundaryCount", "className", "color", "count", "defaultPage", "disabled", "getItemAriaLabel", "hideNextButton", "hidePrevButton", "onChange", "page", "renderItem", "shape", "showFirstButton", "showLastButton", "siblingCount", "size", "variant"];
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    variant
+  } = ownerState;
+  const slots = {
+    root: ['root', variant],
+    ul: ['ul']
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_6__["default"])(slots, _paginationClasses__WEBPACK_IMPORTED_MODULE_7__.getPaginationUtilityClass, classes);
+};
+
+const PaginationRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('nav', {
+  name: 'MuiPagination',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[ownerState.variant]];
+  }
+})({});
+const PaginationUl = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('ul', {
+  name: 'MuiPagination',
+  slot: 'Ul',
+  overridesResolver: (props, styles) => styles.ul
+})({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  padding: 0,
+  margin: 0,
+  listStyle: 'none'
+});
+
+function defaultGetAriaLabel(type, page, selected) {
+  if (type === 'page') {
+    return `${selected ? '' : 'Go to '}page ${page}`;
+  }
+
+  return `Go to ${type} page`;
+}
+
+const Pagination = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Pagination(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__["default"])({
+    props: inProps,
+    name: 'MuiPagination'
+  });
+
+  const {
+    boundaryCount = 1,
+    className,
+    color = 'standard',
+    count = 1,
+    defaultPage = 1,
+    disabled = false,
+    getItemAriaLabel = defaultGetAriaLabel,
+    hideNextButton = false,
+    hidePrevButton = false,
+    renderItem = item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_PaginationItem__WEBPACK_IMPORTED_MODULE_10__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, item)),
+    shape = 'circular',
+    showFirstButton = false,
+    showLastButton = false,
+    siblingCount = 1,
+    size = 'medium',
+    variant = 'text'
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(props, _excluded);
+
+  const {
+    items
+  } = (0,_usePagination__WEBPACK_IMPORTED_MODULE_11__["default"])((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    componentName: 'Pagination'
+  }));
+
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    boundaryCount,
+    color,
+    count,
+    defaultPage,
+    disabled,
+    getItemAriaLabel,
+    hideNextButton,
+    hidePrevButton,
+    renderItem,
+    shape,
+    showFirstButton,
+    showLastButton,
+    siblingCount,
+    size,
+    variant
+  });
+
+  const classes = useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PaginationRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    "aria-label": "pagination navigation",
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className),
+    ownerState: ownerState,
+    ref: ref
+  }, other, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PaginationUl, {
+      className: classes.ul,
+      ownerState: ownerState,
+      children: items.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+        children: renderItem((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, item, {
+          color,
+          'aria-label': getItemAriaLabel(item.type, item.page, item.selected),
+          shape,
+          size,
+          variant
+        }))
+      }, index))
+    })
+  }));
+}); // @default tags synced with default values from usePagination
+
+ true ? Pagination.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * Number of always visible pages at the beginning and end.
+   * @default 1
+   */
+  boundaryCount: _mui_utils__WEBPACK_IMPORTED_MODULE_12__["default"],
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * The active color.
+   * @default 'standard'
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['primary', 'secondary', 'standard']), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)]),
+
+  /**
+   * The total number of pages.
+   * @default 1
+   */
+  count: _mui_utils__WEBPACK_IMPORTED_MODULE_12__["default"],
+
+  /**
+   * The page selected by default when the component is uncontrolled.
+   * @default 1
+   */
+  defaultPage: _mui_utils__WEBPACK_IMPORTED_MODULE_12__["default"],
+
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
+   * @param {number} page The page number to format.
+   * @param {bool} selected If true, the current page is selected.
+   * @returns {string}
+   */
+  getItemAriaLabel: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+
+  /**
+   * If `true`, hide the next-page button.
+   * @default false
+   */
+  hideNextButton: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * If `true`, hide the previous-page button.
+   * @default false
+   */
+  hidePrevButton: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * Callback fired when the page is changed.
+   *
+   * @param {React.ChangeEvent<unknown>} event The event source of the callback.
+   * @param {number} page The page selected.
+   */
+  onChange: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+
+  /**
+   * The current page.
+   */
+  page: _mui_utils__WEBPACK_IMPORTED_MODULE_12__["default"],
+
+  /**
+   * Render the item.
+   * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
+   * @returns {ReactNode}
+   * @default (item) => <PaginationItem {...item} />
+   */
+  renderItem: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+
+  /**
+   * The shape of the pagination items.
+   * @default 'circular'
+   */
+  shape: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['circular', 'rounded']),
+
+  /**
+   * If `true`, show the first-page button.
+   * @default false
+   */
+  showFirstButton: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * If `true`, show the last-page button.
+   * @default false
+   */
+  showLastButton: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * Number of always visible pages before and after the current page.
+   * @default 1
+   */
+  siblingCount: _mui_utils__WEBPACK_IMPORTED_MODULE_12__["default"],
+
+  /**
+   * The size of the component.
+   * @default 'medium'
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['small', 'medium', 'large']), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)]),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)])), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)]),
+
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['outlined', 'text']), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pagination);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/Pagination/paginationClasses.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@mui/material/Pagination/paginationClasses.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getPaginationUtilityClass": () => (/* binding */ getPaginationUtilityClass),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClasses/generateUtilityClasses.js");
+
+function getPaginationUtilityClass(slot) {
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiPagination', slot);
+}
+const paginationClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiPagination', ['root', 'ul', 'outlined', 'text']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (paginationClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/PaginationItem/PaginationItem.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@mui/material/PaginationItem/PaginationItem.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/colorManipulator.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./paginationItemClasses */ "./node_modules/@mui/material/PaginationItem/paginationItemClasses.js");
+/* harmony import */ var _styles_useTheme__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../styles/useTheme */ "./node_modules/@mui/material/styles/useTheme.js");
+/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ButtonBase */ "./node_modules/@mui/material/ButtonBase/ButtonBase.js");
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@mui/material/utils/capitalize.js");
+/* harmony import */ var _internal_svg_icons_FirstPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../internal/svg-icons/FirstPage */ "./node_modules/@mui/material/internal/svg-icons/FirstPage.js");
+/* harmony import */ var _internal_svg_icons_LastPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../internal/svg-icons/LastPage */ "./node_modules/@mui/material/internal/svg-icons/LastPage.js");
+/* harmony import */ var _internal_svg_icons_NavigateBefore__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../internal/svg-icons/NavigateBefore */ "./node_modules/@mui/material/internal/svg-icons/NavigateBefore.js");
+/* harmony import */ var _internal_svg_icons_NavigateNext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../internal/svg-icons/NavigateNext */ "./node_modules/@mui/material/internal/svg-icons/NavigateNext.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["className", "color", "component", "components", "disabled", "page", "selected", "shape", "size", "type", "variant"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const overridesResolver = (props, styles) => {
+  const {
+    ownerState
+  } = props;
+  return [styles.root, styles[ownerState.variant], styles[`size${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.size)}`], ownerState.variant === 'text' && styles[`text${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.color)}`], ownerState.variant === 'outlined' && styles[`outlined${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.color)}`], ownerState.shape === 'rounded' && styles.rounded, ownerState.type === 'page' && styles.page, (ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis') && styles.ellipsis, (ownerState.type === 'previous' || ownerState.type === 'next') && styles.previousNext, (ownerState.type === 'first' || ownerState.type === 'last') && styles.firstLast];
+};
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    color,
+    disabled,
+    selected,
+    size,
+    shape,
+    type,
+    variant
+  } = ownerState;
+  const slots = {
+    root: ['root', `size${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(size)}`, variant, shape, color !== 'standard' && `${variant}${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(color)}`, disabled && 'disabled', selected && 'selected', {
+      page: 'page',
+      first: 'firstLast',
+      last: 'firstLast',
+      'start-ellipsis': 'ellipsis',
+      'end-ellipsis': 'ellipsis',
+      previous: 'previousNext',
+      next: 'previousNext'
+    }[type]],
+    icon: ['icon']
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_7__["default"])(slots, _paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__.getPaginationItemUtilityClass, classes);
+};
+
+const PaginationItemEllipsis = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_9__["default"])('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver
+})(({
+  theme,
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, theme.typography.body2, {
+  borderRadius: 32 / 2,
+  textAlign: 'center',
+  boxSizing: 'border-box',
+  minWidth: 32,
+  padding: '0 6px',
+  margin: '0 3px',
+  color: theme.palette.text.primary,
+  height: 'auto',
+  [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity
+  }
+}, ownerState.size === 'small' && {
+  minWidth: 26,
+  borderRadius: 26 / 2,
+  margin: '0 1px',
+  padding: '0 4px'
+}, ownerState.size === 'large' && {
+  minWidth: 40,
+  borderRadius: 40 / 2,
+  padding: '0 10px',
+  fontSize: theme.typography.pxToRem(15)
+}));
+const PaginationItemPage = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_9__["default"])(_ButtonBase__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver
+})(({
+  theme,
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, theme.typography.body2, {
+  borderRadius: 32 / 2,
+  textAlign: 'center',
+  boxSizing: 'border-box',
+  minWidth: 32,
+  height: 32,
+  padding: '0 6px',
+  margin: '0 3px',
+  color: theme.palette.text.primary,
+  [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].focusVisible}`]: {
+    backgroundColor: theme.palette.action.focus
+  },
+  [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity
+  },
+  transition: theme.transitions.create(['color', 'background-color'], {
+    duration: theme.transitions.duration.short
+  }),
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: 'transparent'
+    }
+  },
+  [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].selected}`]: {
+    backgroundColor: theme.palette.action.selected,
+    '&:hover': {
+      backgroundColor: (0,_mui_system__WEBPACK_IMPORTED_MODULE_11__.alpha)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.action.selected
+      }
+    },
+    [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].focusVisible}`]: {
+      backgroundColor: (0,_mui_system__WEBPACK_IMPORTED_MODULE_11__.alpha)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+    },
+    [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].disabled}`]: {
+      opacity: 1,
+      color: theme.palette.action.disabled,
+      backgroundColor: theme.palette.action.selected
+    }
+  }
+}, ownerState.size === 'small' && {
+  minWidth: 26,
+  height: 26,
+  borderRadius: 26 / 2,
+  margin: '0 1px',
+  padding: '0 4px'
+}, ownerState.size === 'large' && {
+  minWidth: 40,
+  height: 40,
+  borderRadius: 40 / 2,
+  padding: '0 10px',
+  fontSize: theme.typography.pxToRem(15)
+}, ownerState.shape === 'rounded' && {
+  borderRadius: theme.shape.borderRadius
+}), ({
+  theme,
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.variant === 'text' && {
+  [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].selected}`]: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.color !== 'standard' && {
+    color: theme.palette[ownerState.color].contrastText,
+    backgroundColor: theme.palette[ownerState.color].main,
+    '&:hover': {
+      backgroundColor: theme.palette[ownerState.color].dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette[ownerState.color].main
+      }
+    },
+    [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].focusVisible}`]: {
+      backgroundColor: theme.palette[ownerState.color].dark
+    }
+  }, {
+    [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].disabled}`]: {
+      color: theme.palette.action.disabled
+    }
+  })
+}, ownerState.variant === 'outlined' && {
+  border: `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
+  [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].selected}`]: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.color !== 'standard' && {
+    color: theme.palette[ownerState.color].main,
+    border: `1px solid ${(0,_mui_system__WEBPACK_IMPORTED_MODULE_11__.alpha)(theme.palette[ownerState.color].main, 0.5)}`,
+    backgroundColor: (0,_mui_system__WEBPACK_IMPORTED_MODULE_11__.alpha)(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity),
+    '&:hover': {
+      backgroundColor: (0,_mui_system__WEBPACK_IMPORTED_MODULE_11__.alpha)(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent'
+      }
+    },
+    [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].focusVisible}`]: {
+      backgroundColor: (0,_mui_system__WEBPACK_IMPORTED_MODULE_11__.alpha)(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity)
+    }
+  }, {
+    [`&.${_paginationItemClasses__WEBPACK_IMPORTED_MODULE_8__["default"].disabled}`]: {
+      borderColor: theme.palette.action.disabledBackground,
+      color: theme.palette.action.disabled
+    }
+  })
+}));
+const PaginationItemPageIcon = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_9__["default"])('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon
+})(({
+  theme,
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+  fontSize: theme.typography.pxToRem(20),
+  margin: '0 -8px'
+}, ownerState.size === 'small' && {
+  fontSize: theme.typography.pxToRem(18)
+}, ownerState.size === 'large' && {
+  fontSize: theme.typography.pxToRem(22)
+}));
+const PaginationItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function PaginationItem(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_12__["default"])({
+    props: inProps,
+    name: 'MuiPaginationItem'
+  });
+
+  const {
+    className,
+    color = 'standard',
+    component,
+    components = {
+      first: _internal_svg_icons_FirstPage__WEBPACK_IMPORTED_MODULE_13__["default"],
+      last: _internal_svg_icons_LastPage__WEBPACK_IMPORTED_MODULE_14__["default"],
+      next: _internal_svg_icons_NavigateNext__WEBPACK_IMPORTED_MODULE_15__["default"],
+      previous: _internal_svg_icons_NavigateBefore__WEBPACK_IMPORTED_MODULE_16__["default"]
+    },
+    disabled = false,
+    page,
+    selected = false,
+    shape = 'circular',
+    size = 'medium',
+    type = 'page',
+    variant = 'text'
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(props, _excluded);
+
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, props, {
+    color,
+    disabled,
+    selected,
+    shape,
+    size,
+    type,
+    variant
+  });
+
+  const theme = (0,_styles_useTheme__WEBPACK_IMPORTED_MODULE_17__["default"])();
+  const classes = useUtilityClasses(ownerState);
+  const normalizedIcons = theme.direction === 'rtl' ? {
+    previous: components.next || _internal_svg_icons_NavigateNext__WEBPACK_IMPORTED_MODULE_15__["default"],
+    next: components.previous || _internal_svg_icons_NavigateBefore__WEBPACK_IMPORTED_MODULE_16__["default"],
+    last: components.first || _internal_svg_icons_FirstPage__WEBPACK_IMPORTED_MODULE_13__["default"],
+    first: components.last || _internal_svg_icons_LastPage__WEBPACK_IMPORTED_MODULE_14__["default"]
+  } : {
+    previous: components.previous || _internal_svg_icons_NavigateBefore__WEBPACK_IMPORTED_MODULE_16__["default"],
+    next: components.next || _internal_svg_icons_NavigateNext__WEBPACK_IMPORTED_MODULE_15__["default"],
+    first: components.first || _internal_svg_icons_FirstPage__WEBPACK_IMPORTED_MODULE_13__["default"],
+    last: components.last || _internal_svg_icons_LastPage__WEBPACK_IMPORTED_MODULE_14__["default"]
+  };
+  const Icon = normalizedIcons[type];
+  return type === 'start-ellipsis' || type === 'end-ellipsis' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PaginationItemEllipsis, {
+    ref: ref,
+    ownerState: ownerState,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className),
+    children: "\u2026"
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(PaginationItemPage, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    ref: ref,
+    ownerState: ownerState,
+    component: component,
+    disabled: disabled,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className)
+  }, other, {
+    children: [type === 'page' && page, Icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PaginationItemPageIcon, {
+      as: Icon,
+      ownerState: ownerState,
+      className: classes.icon
+    }) : null]
+  }));
+});
+ true ? PaginationItem.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * @ignore
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * The active color.
+   * @default 'standard'
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['primary', 'secondary', 'standard']), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)]),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
+
+  /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components: prop_types__WEBPACK_IMPORTED_MODULE_3___default().shape({
+    first: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
+    last: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
+    next: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
+    previous: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType)
+  }),
+
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * The current page number.
+   */
+  page: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * If `true` the pagination item is selected.
+   * @default false
+   */
+  selected: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * The shape of the pagination item.
+   * @default 'circular'
+   */
+  shape: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['circular', 'rounded']),
+
+  /**
+   * The size of the component.
+   * @default 'medium'
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['small', 'medium', 'large']), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)]),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)])), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)]),
+
+  /**
+   * The type of pagination item.
+   * @default 'page'
+   */
+  type: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['end-ellipsis', 'first', 'last', 'next', 'page', 'previous', 'start-ellipsis']),
+
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['outlined', 'text']), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PaginationItem);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/PaginationItem/paginationItemClasses.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@mui/material/PaginationItem/paginationItemClasses.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getPaginationItemUtilityClass": () => (/* binding */ getPaginationItemUtilityClass),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClasses/generateUtilityClasses.js");
+
+function getPaginationItemUtilityClass(slot) {
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiPaginationItem', slot);
+}
+const paginationItemClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiPaginationItem', ['root', 'page', 'sizeSmall', 'sizeLarge', 'text', 'textPrimary', 'textSecondary', 'outlined', 'outlinedPrimary', 'outlinedSecondary', 'rounded', 'ellipsis', 'firstLast', 'previousNext', 'focusVisible', 'disabled', 'selected', 'icon']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (paginationItemClasses);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/Paper/Paper.js":
 /*!***************************************************!*\
   !*** ./node_modules/@mui/material/Paper/Paper.js ***!
@@ -8385,6 +9133,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/internal/svg-icons/FirstPage.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@mui/material/internal/svg-icons/FirstPage.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/createSvgIcon */ "./node_modules/@mui/material/utils/createSvgIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+/**
+ * @ignore - internal component.
+ */
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+  d: "M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"
+}), 'FirstPage'));
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/internal/svg-icons/InfoOutlined.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@mui/material/internal/svg-icons/InfoOutlined.js ***!
@@ -8409,6 +9184,87 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
   d: "M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"
 }), 'InfoOutlined'));
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/internal/svg-icons/LastPage.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@mui/material/internal/svg-icons/LastPage.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/createSvgIcon */ "./node_modules/@mui/material/utils/createSvgIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+/**
+ * @ignore - internal component.
+ */
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+  d: "M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"
+}), 'LastPage'));
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/internal/svg-icons/NavigateBefore.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@mui/material/internal/svg-icons/NavigateBefore.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/createSvgIcon */ "./node_modules/@mui/material/utils/createSvgIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+/**
+ * @ignore - internal component.
+ */
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+  d: "M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+}), 'NavigateBefore'));
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/internal/svg-icons/NavigateNext.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@mui/material/internal/svg-icons/NavigateNext.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/createSvgIcon */ "./node_modules/@mui/material/utils/createSvgIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+/**
+ * @ignore - internal component.
+ */
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+  d: "M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+}), 'NavigateNext'));
 
 /***/ }),
 
@@ -9341,6 +10197,133 @@ const zIndex = {
   tooltip: 1500
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (zIndex);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/usePagination/usePagination.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@mui/material/usePagination/usePagination.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ usePagination)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/useControlled.js");
+
+
+const _excluded = ["boundaryCount", "componentName", "count", "defaultPage", "disabled", "hideNextButton", "hidePrevButton", "onChange", "page", "showFirstButton", "showLastButton", "siblingCount"];
+
+function usePagination(props = {}) {
+  // keep default values in sync with @default tags in Pagination.propTypes
+  const {
+    boundaryCount = 1,
+    componentName = 'usePagination',
+    count = 1,
+    defaultPage = 1,
+    disabled = false,
+    hideNextButton = false,
+    hidePrevButton = false,
+    onChange: handleChange,
+    page: pageProp,
+    showFirstButton = false,
+    showLastButton = false,
+    siblingCount = 1
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(props, _excluded);
+
+  const [page, setPageState] = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_2__["default"])({
+    controlled: pageProp,
+    default: defaultPage,
+    name: componentName,
+    state: 'page'
+  });
+
+  const handleClick = (event, value) => {
+    if (!pageProp) {
+      setPageState(value);
+    }
+
+    if (handleChange) {
+      handleChange(event, value);
+    }
+  }; // https://dev.to/namirsab/comment/2050
+
+
+  const range = (start, end) => {
+    const length = end - start + 1;
+    return Array.from({
+      length
+    }, (_, i) => start + i);
+  };
+
+  const startPages = range(1, Math.min(boundaryCount, count));
+  const endPages = range(Math.max(count - boundaryCount + 1, boundaryCount + 1), count);
+  const siblingsStart = Math.max(Math.min( // Natural start
+  page - siblingCount, // Lower boundary when page is high
+  count - boundaryCount - siblingCount * 2 - 1), // Greater than startPages
+  boundaryCount + 2);
+  const siblingsEnd = Math.min(Math.max( // Natural end
+  page + siblingCount, // Upper boundary when page is low
+  boundaryCount + siblingCount * 2 + 2), // Less than endPages
+  endPages.length > 0 ? endPages[0] - 2 : count - 1); // Basic list of items to render
+  // e.g. itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
+
+  const itemList = [...(showFirstButton ? ['first'] : []), ...(hidePrevButton ? [] : ['previous']), ...startPages, // Start ellipsis
+  // eslint-disable-next-line no-nested-ternary
+  ...(siblingsStart > boundaryCount + 2 ? ['start-ellipsis'] : boundaryCount + 1 < count - boundaryCount ? [boundaryCount + 1] : []), // Sibling pages
+  ...range(siblingsStart, siblingsEnd), // End ellipsis
+  // eslint-disable-next-line no-nested-ternary
+  ...(siblingsEnd < count - boundaryCount - 1 ? ['end-ellipsis'] : count - boundaryCount > boundaryCount ? [count - boundaryCount] : []), ...endPages, ...(hideNextButton ? [] : ['next']), ...(showLastButton ? ['last'] : [])]; // Map the button type to its page number
+
+  const buttonPage = type => {
+    switch (type) {
+      case 'first':
+        return 1;
+
+      case 'previous':
+        return page - 1;
+
+      case 'next':
+        return page + 1;
+
+      case 'last':
+        return count;
+
+      default:
+        return null;
+    }
+  }; // Convert the basic item list to PaginationItem props objects
+
+
+  const items = itemList.map(item => {
+    return typeof item === 'number' ? {
+      onClick: event => {
+        handleClick(event, item);
+      },
+      type: 'page',
+      page: item,
+      selected: item === page,
+      disabled,
+      'aria-current': item === page ? 'true' : undefined
+    } : {
+      onClick: event => {
+        handleClick(event, buttonPage(item));
+      },
+      type: item,
+      page: buttonPage(item),
+      selected: false,
+      disabled: disabled || item.indexOf('ellipsis') === -1 && (item === 'next' || item === 'last' ? page >= count : page <= 1)
+    };
+  });
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    items
+  }, other);
+}
 
 /***/ }),
 
@@ -15639,6 +16622,7 @@ function Product(_ref) {
             container: true,
             xs: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              item: true,
               xs: 6,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
                 variant: 'subtitle1',
@@ -15650,6 +16634,7 @@ function Product(_ref) {
                 children: ["quantity: ", item.qty]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              item: true,
               xs: 6,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
                 variant: 'h5',
@@ -15666,19 +16651,19 @@ function Product(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
             item: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              onClick: function onClick() {
+                return addProduct(item);
+              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_AddShoppingCart__WEBPACK_IMPORTED_MODULE_9__["default"], {
-                onClick: function onClick() {
-                  return addProduct(item);
-                },
                 sx: {
                   color: 'green'
                 }
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              onClick: function onClick() {
+                return decrease(item);
+              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_RemoveCircleOutline__WEBPACK_IMPORTED_MODULE_10__["default"], {
-                onClick: function onClick() {
-                  return decrease(item);
-                },
                 sx: {
                   color: 'red'
                 }
@@ -15707,12 +16692,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Container/Container.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Stack/Stack.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ImageList/ImageList.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Container/Container.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Stack/Stack.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ImageList/ImageList.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Pagination/Pagination.js");
 /* harmony import */ var _components_Product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Product */ "./resources/js/components/Product.js");
 /* harmony import */ var _ProductCart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCart */ "./resources/js/components/ProductCart.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _hooks_useProducts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useProducts */ "./resources/js/hooks/useProducts.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -15723,24 +16712,39 @@ function ProductList(_ref) {
   var products = _ref.products,
       _ref$cartMode = _ref.cartMode,
       cartMode = _ref$cartMode === void 0 ? false : _ref$cartMode;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    children: cartMode ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+
+  var _useProducts = (0,_hooks_useProducts__WEBPACK_IMPORTED_MODULE_3__.useProducts)(),
+      productState = _useProducts.productState,
+      fetchProducts = _useProducts.fetchProducts;
+
+  var handlePagination = function handlePagination(event, page) {
+    fetchProducts(page);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    children: cartMode ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
       spacing: 1,
       children: products.map(function (item) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProductCart__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ProductCart__WEBPACK_IMPORTED_MODULE_2__["default"], {
           item: item
         }, item.id);
       })
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      cols: 4,
-      sx: {
-        minWidth: 200
-      },
-      children: products.map(function (item) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Product__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          item: item
-        }, item.id);
-      })
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      spacing: 2,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        cols: 4,
+        sx: {
+          minWidth: 200
+        },
+        children: productState.products.map(function (item) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Product__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            item: item
+          }, item.id);
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        count: productState.meta.last_page,
+        onChange: handlePagination
+      })]
     })
   });
 }
@@ -15874,19 +16878,23 @@ var CartContextProvider = function CartContextProvider(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              console.log(payload);
+              _context.next = 3;
               return axios.patch('http://morsum.test/api/cart/removeItem', {
                 rowId: payload.rowId
               });
 
-            case 2:
+            case 3:
               response = _context.sent;
-              dispatch({
-                type: 'DECREASE',
-                response: response
-              });
 
-            case 4:
+              if (response.status === 200) {
+                dispatch({
+                  type: 'DECREASE',
+                  response: response
+                });
+              }
+
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -15906,19 +16914,23 @@ var CartContextProvider = function CartContextProvider(_ref) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
+              console.log(payload);
+              _context2.next = 3;
               return axios.patch('http://morsum.test/api/cart/addItem', {
                 id: payload.id
               });
 
-            case 2:
+            case 3:
               response = _context2.sent;
-              dispatch({
-                type: 'ADD_ITEM',
-                response: response
-              });
 
-            case 4:
+              if (response.status === 200) {
+                dispatch({
+                  type: 'ADD_ITEM',
+                  response: response
+                });
+              }
+
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -15943,9 +16955,12 @@ var CartContextProvider = function CartContextProvider(_ref) {
 
             case 2:
               response = _context3.sent;
-              dispatch({
-                type: 'CLEAR'
-              });
+
+              if (response.status === 200) {
+                dispatch({
+                  type: 'CLEAR'
+                });
+              }
 
             case 4:
             case "end":
@@ -15967,16 +16982,18 @@ var CartContextProvider = function CartContextProvider(_ref) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              console.log('CHECKOUT', state); // TODO: handle response error
-
+              console.log('CHECKOUT', state);
               _context4.next = 3;
               return axios.post('http://morsum.test/api/orders');
 
             case 3:
               response = _context4.sent;
-              dispatch({
-                type: 'CHECKOUT'
-              });
+
+              if (response.status === 201) {
+                dispatch({
+                  type: 'CHECKOUT'
+                });
+              }
 
             case 5:
             case "end":
@@ -16109,35 +17126,71 @@ var ProductsContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.createC
 var ProductsContextProvider = function ProductsContextProvider(_ref) {
   var children = _ref.children;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    products: [],
+    links: [],
+    meta: []
+  }),
       _useState2 = _slicedToArray(_useState, 2),
-      products = _useState2[0],
+      productState = _useState2[0],
       setProductsData = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+  var fetchProducts = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(pageNumber) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios.get('http://morsum.test/api/products?page=' + pageNumber);
+
+            case 2:
+              response = _context.sent;
+
+              if (response.status === 200) {
+                console.log('state response', response);
+                setProductsData({
+                  products: response.data.data,
+                  links: response.data.links,
+                  meta: response.data.meta
+                });
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function fetchProducts(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _context.next = 2;
-            return axios.get('http://morsum.test/api/products');
+            _context2.next = 2;
+            return fetchProducts();
 
           case 2:
-            response = _context.sent;
-            setProductsData(response.data);
-
-          case 4:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   })), []);
+  var contextValues = {
+    fetchProducts: fetchProducts,
+    productState: productState
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ProductsContext.Provider, {
-    value: {
-      products: products
-    },
+    value: contextValues,
     children: children
   });
 };
@@ -16364,7 +17417,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Landing() {
   var _useProducts = (0,_hooks_useProducts__WEBPACK_IMPORTED_MODULE_2__.useProducts)(),
-      products = _useProducts.products;
+      productState = _useProducts.productState;
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
     sx: {
@@ -16389,7 +17442,7 @@ function Landing() {
         my: 4
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProductList__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        products: products
+        productState: productState
       })
     })]
   });

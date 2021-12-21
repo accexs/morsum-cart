@@ -5,7 +5,7 @@ import {useProducts} from '../hooks/useProducts';
 
 function Landing() {
 
-    const {products} = useProducts();
+    const {productState} = useProducts();
 
     return (
         <Box sx={{my: 4}}>
@@ -16,7 +16,7 @@ function Landing() {
             </Box>
             <Divider sx={{marginX: 0}} variant={'middle'}/>
             <Box sx={{my: 4}}>
-                <ProductList products={products}/>
+                <ProductList productState={productState}/>
             </Box>
         </Box>
     );

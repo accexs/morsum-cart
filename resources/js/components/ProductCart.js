@@ -28,7 +28,7 @@ function Product({item}) {
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction={'column'} spacing={2}>
                         <Grid item container xs>
-                            <Grid xs={6}>
+                            <Grid item xs={6}>
                                 <Typography variant={'subtitle1'} gutterBottom>
                                     {item.name}
                                 </Typography>
@@ -36,7 +36,7 @@ function Product({item}) {
                                     quantity: {item.qty}
                                 </Typography>
                             </Grid>
-                            <Grid xs={6}>
+                            <Grid item xs={6}>
                                 <Typography variant={'h5'} gutterBottom align={'right'}>
                                     $ {item.price}
                                 </Typography>
@@ -49,11 +49,11 @@ function Product({item}) {
                             </Grid>
                         </Grid>
                         <Grid item>
-                            <IconButton>
-                                <AddShoppingCartIcon onClick={() => addProduct(item)} sx={{color: 'green'}}/>
+                            <IconButton onClick={() => addProduct(item)}>
+                                <AddShoppingCartIcon sx={{color: 'green'}}/>
                             </IconButton>
-                            <IconButton>
-                                <RemoveCircleOutlineIcon onClick={() => decrease(item)} sx={{color: 'red'}}/>
+                            <IconButton onClick={() => decrease(item)}>
+                                <RemoveCircleOutlineIcon sx={{color: 'red'}}/>
                             </IconButton>
                         </Grid>
                     </Grid>
