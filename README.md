@@ -19,6 +19,8 @@ Cart state is orchestated by the BE. Every action updates the cart context and i
 
 The library used to handle cart state uses a combination of session and db sotarge to keep data, it is not the best approach for an API however using the DB storage feature makes it ok to persue this approach and it was a time saver. It will be better for this APP to refactor this in favor of a more traditional `Cart` model.
 
+To check OpenApi 3 spec, go to `/api/documentation` on the browser. An  `api-docs.json` is provided and should work however if needed execute `php artisan l5-swagger:generate` 
+
 Several endpoints compose the service:
 
 `GET /products`

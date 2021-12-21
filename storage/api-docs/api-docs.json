@@ -1,0 +1,185 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Morsum API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/cart": {
+            "get": {
+                "tags": [
+                    "cart"
+                ],
+                "summary": "Returns cart status and items",
+                "operationId": "getItems",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cart"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "cart"
+                ],
+                "summary": "Returns cart status and items",
+                "operationId": "destroy",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cart"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cart/addItem": {
+            "patch": {
+                "tags": [
+                    "cart"
+                ],
+                "summary": "Returns cart status and items",
+                "operationId": "addItem",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "number",
+                                        "example": "2"
+                                    },
+                                    "quantity": {
+                                        "type": "number",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cart"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cart/removeItem": {
+            "patch": {
+                "tags": [
+                    "cart"
+                ],
+                "summary": "Returns cart status and items",
+                "operationId": "removeItem",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "rowId"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "example": "370d08585360f5c568b18d1f2e4ca1df"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cart"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Cart": {
+                "title": "Cart model",
+                "description": "Cart model",
+                "properties": {
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "rowId": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "qty": {
+                                    "type": "number"
+                                },
+                                "price": {
+                                    "type": "number"
+                                },
+                                "subtotal": {
+                                    "type": "number"
+                                },
+                                "image": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "count": {
+                        "type": "number"
+                    },
+                    "subtotal": {
+                        "type": "number"
+                    },
+                    "total": {
+                        "type": "number"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
