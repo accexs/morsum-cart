@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CartCollection;
 use App\Models\Product;
+use App\Services\CartService;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -82,13 +83,10 @@ class CartController extends Controller
      *     )
      * )
      */
-    public function addItem(Request $request): JsonResource
+    public function addItem(Request $request, CartService $cartService): JsonResource
     {
-        $product = Product::findOrFail($request->get('id'));
-        $quantity = $request->get('quantity');
-        Cart::restore($this->cartId);
-        Cart::add($product, $quantity);
-        Cart::store($this->cartId);
+        $productId = $request->get('id');
+        $cartService->addItemToCart($productId);
         return CartCollection::make(Cart::content()->flatten());
     }
 
@@ -114,17 +112,13 @@ class CartController extends Controller
      *     )
      * )
      */
-    public function removeItem(Request $request): JsonResource
+    public function removeItem(Request $request, CartService $cartService): JsonResource
     {
         $request->validate([
             'rowId' => 'required|string',
         ]);
         $rowId = $request->get('rowId');
-        Cart::restore($this->cartId);
-        $product = Cart::get($rowId);
-        $quantity = $product->qty - 1;
-        Cart::update($rowId, $quantity);
-        Cart::store($this->cartId);
+        $cartService->removeItemFromCart($rowId);
         return CartCollection::make(Cart::content()->flatten());
     }
 
@@ -141,11 +135,9 @@ class CartController extends Controller
      *     )
      * )
      */
-    public function destroy(Request $request): JsonResource
+    public function destroy(CartService $cartService): JsonResource
     {
-        Cart::restore($this->cartId);
-        Cart::destroy();
-        Cart::store($this->cartId);
+        $cartService->emptyCart();
         return CartCollection::make(Cart::content()->flatten());
     }
 }
